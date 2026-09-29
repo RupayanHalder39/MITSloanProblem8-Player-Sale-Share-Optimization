@@ -1,0 +1,11 @@
+metric,value
+player_decision_events,8433
+players,1132
+competition,La Liga
+start_date,2022-07-01
+end_date,2025-06-30
+temporal_leakage_violations,0
+primary_horizon_months,12
+primary_horizon_usable_coverage_percent,54.06
+24_month_usable_coverage_percent,25.36
+36_month_usable_coverage_percent,0

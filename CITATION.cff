@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this research repository, please cite it using this metadata."
+title: "How Much of a Player Should a Club Sell? Forecast-Based Offer x Share Decision Support in La Liga"
+type: software
+authors:
+  - family-names: Halder
+    given-names: Rupayan
+repository-code: "https://github.com/RupayanHalder39/MITSloanProblem8-Player-Sale-Share-Optimization"
+url: "https://github.com/RupayanHalder39/MITSloanProblem8-Player-Sale-Share-Optimization"
+license: MIT

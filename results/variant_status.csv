@@ -1,0 +1,7 @@
+variant,definition,result,evidence_status
+R0,Original mean-variance objective,Near-total-sale collapse,held-out not supported
+R1,Current-value-normalized variance,Graduated but robustly worse than B3,post-hoc
+R2,Expected-value-normalized variance,Graduated but robustly worse than B3,post-hoc
+R3,Linearized lognormal variance diagnostic,Collapse retained,post-hoc
+R4,CRRA certainty-equivalent formulation,Most promising aggregate evidence,post-hoc not independently validated
+R5,Downside-constrained CVaR formulation,Graduated but robustly worse than B3,post-hoc

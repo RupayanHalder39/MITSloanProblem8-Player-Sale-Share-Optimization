@@ -1,0 +1,4 @@
+metric,value,evidence_status
+heldout_log_mae,0.526,held-out
+persistence_log_mae,0.577,held-out comparator
+heldout_spearman,0.582,held-out

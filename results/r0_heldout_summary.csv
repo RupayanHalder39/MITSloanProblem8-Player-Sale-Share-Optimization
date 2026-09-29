@@ -1,0 +1,5 @@
+metric,value,evidence_status
+scenarios,148176,held-out
+percent_recommending_at_least_99_9_percent_sale,100,held-out
+verdict,NOT SUPPORTED,held-out
+realized_outcome_comparison,R0 did not clearly outperform B3,held-out qualitative conclusion

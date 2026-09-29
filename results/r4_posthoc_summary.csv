@@ -1,0 +1,7 @@
+metric,value,evidence_status
+percent_outside_at_least_99_percent_sale_bucket,59.4,post-hoc not independently validated
+mean_realized_value_difference_vs_b3_eur,167138,post-hoc not independently validated
+bootstrap_95_low_eur,14634,player-clustered post-hoc
+bootstrap_95_high_eur,243196,player-clustered post-hoc
+mean_regret_r4_eur,992618,post-hoc Run-8 corrected
+mean_regret_b3_eur,1159756,post-hoc reference

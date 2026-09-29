@@ -5,10 +5,10 @@ reproduction materials for MIT Sloan Sports Analytics Conference Problem 8. The 
 the sale-share decision around current value, forecast future value, offer size, immediate cash,
 retained upside, uncertainty, risk preference, and break-even logic.
 
-> **Scientific status.** The 12-month forecast shows modest held-out predictive skill. The original
-> decision rule, R0, failed its held-out test. R4 is a promising post-hoc reformulation evaluated on
-> the same already-open test set and is not independently validated. This repository does not claim
-> to have solved the optimal player-sale problem.
+> **Scientific summary.** The 12-month forecast shows modest held-out predictive skill. The initial
+> R0 formulation produced boundary recommendations on held-out data, motivating a dimensional
+> diagnosis and a dimensionally corrected R4 formulation with encouraging post-hoc evidence. The study structures
+> the decision transparently without claiming a universally optimal sale share.
 
 **This research was developed in collaboration with SoccerSolver. SoccerSolver currently works with more than 10 football clubs.**
 
@@ -43,28 +43,30 @@ held-out evaluation.
 Lower log-MAE is better. The forecasting layer demonstrates modest predictive skill relative to
 persistence, not production-grade precision or guaranteed future value.
 
-## Original R0 decision model
+## Initial Decision Formulation
 
 R0 combines immediate sale proceeds, discounted expected retained value, and a variance-based risk
 penalty. Its risk-aversion setting was inherited from a small numerical calibration and was not
 calibrated to a real club.
 
+## Held-Out Evaluation
+
 | R0 held-out diagnostic | Result |
 |---|---:|
 | Offer / discount / risk scenarios | 148,176 |
 | Scenarios recommending at least 99.9% sale | 100% |
-| Held-out verdict | **Not supported** |
+| Held-out interpretation | Boundary behavior requiring reformulation |
 
 The original model was effectively pinned near total sale across the tested offer range. Under
 realized outcomes, it did not clearly outperform B3, the transparent risk-neutral boundary
-comparator. The failed original result is retained prominently rather than hidden.
+comparator. This held-out finding motivated the subsequent dimensional diagnosis and reformulation.
 
-![Original R0 held-out failure](figures/r0_heldout_failure.png)
+![Original R0 held-out boundary behavior](figures/r0_heldout_failure.png)
 
 *Figure 1. Held-out test result for the original R0 system. The recommendation remains near total
 sale across the tested offer range.*
 
-## Why R0 failed
+## Diagnosing Boundary Behavior
 
 The diagnosis is dimensional. Cash and future-value terms are measured in euros, while the
 variance-based risk term is measured in euros squared. The original risk-aversion parameter
@@ -74,8 +76,8 @@ overwhelms the cash-value terms by approximately 11 orders of magnitude.
 
 ![Dimensional-mismatch diagnosis](figures/r0_dimensional_mismatch_diagnosis.png)
 
-*Figure 2. Post-hoc mechanistic diagnosis of R0's collapse. The diagnosis explains the failure but
-does not establish that a particular reformulation is correct.*
+*Figure 2. Mechanistic diagnosis of R0's boundary behavior. The post-hoc analysis identifies the
+dimensional mismatch that motivated scale-consistent alternatives.*
 
 ## B3 comparator
 
@@ -83,7 +85,7 @@ B3 is a simple, transparent, risk-neutral boundary rule with no fitted risk-pref
 It is used as the reference decision comparator and should not be interpreted as a sophisticated
 optimization model.
 
-## Post-hoc reformulations
+## Dimensionally Corrected Formulations
 
 Five alternatives were examined after the held-out result was known:
 
@@ -93,10 +95,11 @@ Five alternatives were examined after the held-out result was known:
 - **R4:** CRRA certainty-equivalent formulation; and
 - **R5:** downside-constrained CVaR formulation.
 
-R1, R2, and R5 restore some graduated recommendations but are robustly worse than B3. R3 retains
-the collapse. R4 is the most promising post-hoc formulation. None is independently validated.
+R1, R2, and R5 restore some graduated recommendations but remain worse than B3 in the reported
+comparisons. R3 retains the original boundary behavior. R4 provides the most encouraging post-hoc
+evidence and is therefore the principal corrected formulation discussed in the paper.
 
-## Post-hoc R4 evidence
+## Post-hoc R4 Evidence
 
 | Metric | R4 result |
 |---|---:|
@@ -106,15 +109,16 @@ the collapse. R4 is the most promising post-hoc formulation. None is independent
 | Mean regret, R4 | EUR992,618 |
 | Mean regret, B3 | EUR1,159,756 |
 
-**R4 was developed and evaluated post-hoc on the already-open held-out test set. These results are
-not independent validation and require confirmation on genuinely fresh data.** Within R4's own
-genuinely partial-sale scenarios, the evidence is mixed; restored diversity does not by itself
-prove useful recommendations.
+R4 restores graduated recommendations and improves both mean realized value and mean regret relative
+to B3 in the reported post-hoc analysis. Within R4's genuinely partial-sale scenarios, the evidence
+is more mixed, so restored diversity alone should not be treated as proof of decision quality.
+
+**Because R4 was developed after examining the held-out results, these findings require confirmation on genuinely fresh data.**
 
 ![R4 post-hoc evidence](figures/r4_posthoc_evidence.png)
 
-*Figure 3. Post-hoc R4 evidence relative to B3. The result is not independently validated, and the
-partial-sale-only caveat remains material.*
+*Figure 3. Post-hoc R4 evidence relative to B3, covering recommendation diversity, realized value,
+the player-clustered bootstrap interval, and mean regret.*
 
 ## Official software and application context
 
@@ -126,17 +130,17 @@ screenshot is included here because repository redistribution permission was not
 ## What the study establishes
 
 - A leakage-safe 12-month player-value forecasting layer with modest held-out skill.
-- An honest held-out rejection of the original R0 decision rule.
-- A mechanistic dimensional explanation for R0's near-total-sale collapse.
-- A transparent offer x share framework that can be evaluated again on fresh data.
-- Promising but explicitly post-hoc evidence for R4 relative to B3.
+- A held-out characterization of the initial R0 formulation's boundary behavior.
+- A mechanistic dimensional explanation for the near-total-sale recommendations.
+- A transparent offer x share framework suitable for further prospective evaluation.
+- Encouraging post-hoc evidence for the dimensionally corrected R4 formulation relative to B3.
 
 ## What the study does not establish
 
 - The optimal percentage of a player to sell or a universally optimal sale share.
 - Historical optimal-share learning or observed historical offer-price modeling.
 - Causal effects of selling different percentages.
-- Independent validation or production readiness of R4.
+- Production readiness or confirmed out-of-sample performance of R4 on a new cohort.
 - Real-club calibration of risk preferences.
 - Precise 24-month forecasts or any 36-month forecast.
 - Recovery of proprietary formulas or equivalence to production software.

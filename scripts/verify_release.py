@@ -72,7 +72,8 @@ for key, expected in expected_r4.items():
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
 for fragment in ["8,433", "1,132", "54.06%", "0.526", "0.577", "0.582", "148,176",
                  "59.4%", "+EUR167,138", "+EUR14,634", "+EUR243,196", "EUR992,618",
-                 "EUR1,159,756", "not independent validation"]:
+                 "EUR1,159,756",
+                 "Because R4 was developed after examining the held-out results, these findings require confirmation on genuinely fresh data."]:
     check(fragment in readme, f"README missing: {fragment}")
 check("production-ready" not in readme.lower(), "README contains production-ready claim")
 check(("/" + "Users/") not in readme, "README contains absolute local path")

@@ -73,10 +73,10 @@ software screenshots, logos, trademarks, photographs, or external assets.
 - Symlink, portability, and large-file scans: PASS.
 - Internal-person/reviewer phrase scan: PASS.
 - Staged-path inspection: PASS; 25 intended public-release files and no restricted extensions.
-- Content release commit: pending.
+- Content release commit: `bb2be5bbe3da3601940157d15819119248222850`.
 - Remote: `https://github.com/RupayanHalder39/MITSloanProblem8-Player-Sale-Share-Optimization.git`
 - Remote preflight: reachable and empty.
-- Push status: pending.
+- Push status: SUCCESS; `main` published to `origin/main` without force.
 
 ## Remaining limitations
 
